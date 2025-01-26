@@ -35,15 +35,15 @@ class CsvImporter
       end
 
       # Create the person and associate relationships
-      person = Person.create(
-        first_name: first_name&.titlecase,
-        last_name: last_name&.titlecase,
+      Person.create(
+        first_name: first_name,
+        last_name: last_name,
         gender: gender,
         weapon: weapon,
-        vehicle: vehicle
+        vehicle: vehicle,
+        affiliations: affiliations, # Associate affiliations at creation
+        locations: locations
       )
-      person.locations << locations
-      person.affiliations << affiliations
     end
   end
 

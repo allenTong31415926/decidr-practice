@@ -1,0 +1,59 @@
+<h1>People Data</h1>
+
+<!-- Flash Messages -->
+<% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
+<!-- Search Form -->
+<form method="get" action="<%= people_path %>">
+  <input type="text" name="search" placeholder="Search by name or affiliation" value="<%= params[:search] %>">
+  <button type="submit">Search</button>
+</form>
+
+<!-- CSV Upload Form -->
+<form method="post" action="<%= csv_upload_people_path %>" enctype="multipart/form-data">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="file" name="file">
+  <button type="submit">Upload CSV</button>
+</form>
+
+<!-- People Table -->
+<table border="1">
+  <thead>
+    <tr>
+      <th><a href="<%= people_path(sort: 'id') %>">ID</a></th>
+      <th><a href="<%= people_path(sort: 'first_name') %>">First Name</a></th>
+      <th><a href="<%= people_path(sort: 'last_name') %>">Last Name</a></th>
+      <th>Gender</th>
+      <th>Locations</th>
+      <th>Affiliations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= person.id %></td>
+        <td><%= person.first_name %></td>
+        <td><%= person.last_name %></td>
+        <td><%= person.gender %></td>
+        <td><%= person.locations.map(&:name).join(', ') %></td>
+        <td><%= person.affiliations.map(&:name).join(', ') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Pagination -->
+<div>
+  <% if @page > 1 %>
+    <a href="<%= people_path(page: @page - 1) %>">Previous</a>
+  <% end %>
+  <span>Page <%= @page %></span>
+  <% if @people.size == 10 %>
+    <a href="<%= people_path(page: @page + 1) %>">Next</a>
+  <% end %>
+</div>
