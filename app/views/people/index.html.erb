@@ -109,6 +109,48 @@
       padding: 8px 12px;
       color: #6c757d;
     }
+    table th a {
+      color: white;
+      text-decoration: none;
+    }
+
+    table th a:hover {
+      text-decoration: underline;
+    }
+
+    /* Add these CSS rules */
+    th.sortable {
+      cursor: pointer;
+      position: relative;
+      padding-right: 20px; /* Make space for the indicator */
+    }
+
+    th.sortable::after {
+      content: '▼';
+      position: absolute;
+      right: 5px;
+      opacity: 0.3;
+    }
+
+    th.sortable[data-sort-dir="asc"]::after {
+      content: '▲';
+      opacity: 1;
+    }
+
+    th.sortable[data-sort-dir="desc"]::after {
+      content: '▼';
+      opacity: 1;
+    }
+
+    /* Update table headers to add padding */
+    table th {
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #dee2e6;
+      background-color: #007bff;
+      color: white;
+      position: relative;
+    }
   </style>
 </head>
 <body>
@@ -138,13 +180,13 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
+            <th class="sortable" onclick="sortTable(1)">First Name</th>
+            <th class="sortable" onclick="sortTable(2)">Last Name</th>
+            <th class="sortable" onclick="sortTable(3)">Gender</th>
             <th>Locations</th>
             <th>Affiliations</th>
-            <th>Weapon</th>
-            <th>Vehicle</th>
+            <th class="sortable" onclick="sortTable(6)">Weapon</th>
+            <th class="sortable" onclick="sortTable(7)">Vehicle</th>
           </tr>
         </thead>
         <tbody>
@@ -179,6 +221,43 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function sortTable(columnIndex) {
+      const table = document.querySelector('table');
+      const tbody = table.querySelector('tbody');
+      const th = table.querySelectorAll('th')[columnIndex];
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+
+      // Get current sort direction or default to ascending
+      const currentDir = th.getAttribute('data-sort-dir') || 'asc';
+      const newDir = currentDir === 'asc' ? 'desc' : 'asc';
+
+      // Reset all sort indicators
+      table.querySelectorAll('th').forEach(header => {
+        header.removeAttribute('data-sort-dir');
+      });
+
+      // Set new sort direction
+      th.setAttribute('data-sort-dir', newDir);
+
+      // Sort the rows
+      rows.sort((a, b) => {
+        const aValue = a.children[columnIndex].textContent.trim();
+        const bValue = b.children[columnIndex].textContent.trim();
+
+        if (newDir === 'asc') {
+          return aValue.localeCompare(bValue);
+        } else {
+          return bValue.localeCompare(aValue);
+        }
+      });
+
+      // Update the table
+      tbody.innerHTML = '';
+      rows.forEach(row => tbody.appendChild(row));
+    }
+  </script>
 </body>
 </html>
 
