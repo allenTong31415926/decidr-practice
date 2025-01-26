@@ -166,13 +166,13 @@
       <!-- Pagination -->
       <div class="pagination">
         <% if @page > 1 %>
-          <a href="<%= people_path(page: @page - 1) %>">Previous</a>
+          <a href="<%= people_path(page: @page - 1, search: params[:search]) %>">Previous</a>
         <% else %>
           <span>Previous</span>
         <% end %>
         <span>Page <%= @page %></span>
         <% if @people.size == 10 %>
-          <a href="<%= people_path(page: @page + 1) %>">Next</a>
+          <a href="<%= people_path(page: @page + 1, search: params[:search]) %>">Next</a>
         <% else %>
           <span>Next</span>
         <% end %>
