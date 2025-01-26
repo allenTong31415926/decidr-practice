@@ -4,22 +4,22 @@ class CsvImporter
   def self.import(file_path)
     CSV.foreach(file_path, headers: true) do |row|
       # Split 'Name' into first_name and last_name
-      name = row['Name'].strip
+      name = row["Name"].strip
 
       # Split the name by the last space
-      if name.include?(' ')
+      if name.include?(" ")
         first_name, last_name = name.rpartition(' ')[0..1]
       else
         first_name, last_name = name, nil
       end
 
       # Extract other fields
-      gender = normalize_gender(row['Gender'])
-      species = row['Species']&.strip
-      affiliation_names = row['Affiliations']&.split(',')&.map(&:strip)
-      location_names = row['Location']&.split(',')&.map(&:strip)
-      weapon = row['Weapon']&.strip
-      vehicle = row['Vehicle']&.strip
+      gender = normalize_gender(row["Gender"])
+      species = row["Species"]&.strip
+      affiliation_names = row["Affiliations"]&.split(',')&.map(&:strip)
+      location_names = row["Location"]&.split(',')&.map(&:strip)
+      weapon = row["Weapon"]&.strip
+      vehicle = row["Vehicle"]&.strip
 
       # Skip people without affiliations
       next if affiliation_names.blank?
