@@ -8,9 +8,11 @@ class CsvImporter
 
       # Split the name by the last space
       if name.include?(" ")
-        first_name, last_name = name.rpartition(" ")[0..1]
+        last_space_index = name.rindex(" ")
+        first_name = name[0...last_space_index]
+        last_name = name[last_space_index + 1..]
       else
-        first_name, last_name = name, nil
+        first_name = name
       end
 
       # Extract other fields
