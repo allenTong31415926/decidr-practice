@@ -6,7 +6,7 @@
 #  first_name :string           not null
 #  last_name  :string
 #  species    :string
-#  gender     :string
+#  gender     :integer
 #  weapon     :string
 #  vehicle    :string
 #  created_at :datetime         not null

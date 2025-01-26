@@ -6,7 +6,7 @@
 #  first_name :string           not null
 #  last_name  :string
 #  species    :string
-#  gender     :string
+#  gender     :integer
 #  weapon     :string
 #  vehicle    :string
 #  created_at :datetime         not null
@@ -17,8 +17,11 @@ class Person < ApplicationRecord
   has_and_belongs_to_many :locations
   has_and_belongs_to_many :affiliations
 
+  enum gender: { Male: 0, Female: 1, Other: 2 }
+
   validates :first_name, presence: true
   validates :affiliations, presence: true
+  validates :gender, inclusion: { in: genders.keys }, allow_nil: true
 
   before_save :titleize_name
 
