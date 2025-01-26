@@ -54,6 +54,9 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Add annotations to your models [https://github.com/ctran/annotate_models]
+  gem "annotate"
 end
 
 group :test do
