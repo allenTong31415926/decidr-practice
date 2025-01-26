@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 class CsvImporter
   def self.import(file_path)
@@ -8,7 +8,7 @@ class CsvImporter
 
       # Split the name by the last space
       if name.include?(" ")
-        first_name, last_name = name.rpartition(' ')[0..1]
+        first_name, last_name = name.rpartition(" ")[0..1]
       else
         first_name, last_name = name, nil
       end
@@ -16,8 +16,8 @@ class CsvImporter
       # Extract other fields
       gender = normalize_gender(row["Gender"])
       species = row["Species"]&.strip
-      affiliation_names = row["Affiliations"]&.split(',')&.map(&:strip)
-      location_names = row["Location"]&.split(',')&.map(&:strip)
+      affiliation_names = row["Affiliations"]&.split(",")&.map(&:strip)
+      location_names = row["Location"]&.split(",")&.map(&:strip)
       weapon = row["Weapon"]&.strip
       vehicle = row["Vehicle"]&.strip
 
@@ -52,12 +52,12 @@ class CsvImporter
     return nil if value.blank?
 
     case value.to_s.strip.downcase
-    when 'male', 'm'
-      'Male'
-    when 'female', 'f'
-      'Female'
-    when 'other'
-      'Other'
+    when "male", "m"
+      "Male"
+    when "female", "f"
+      "Female"
+    when "other"
+      "Other"
     else
       nil # Allow nil for blank or unrecognized values
     end
