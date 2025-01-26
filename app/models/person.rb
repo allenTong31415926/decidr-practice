@@ -17,7 +17,7 @@ class Person < ApplicationRecord
   has_and_belongs_to_many :locations
   has_and_belongs_to_many :affiliations
 
-  enum gender: { Male: 0, Female: 1, Other: 2 }
+  enum :gender, { Male: 0, Female: 1, Other: 2 }
 
   validates :first_name, presence: true
   validates :affiliations, presence: true
