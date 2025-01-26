@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id         :integer          not null, primary key
+#  first_name :string           not null
+#  last_name  :string
+#  species    :string
+#  gender     :string
+#  weapon     :string
+#  vehicle    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Person < ApplicationRecord
   has_and_belongs_to_many :locations
   has_and_belongs_to_many :affiliations
