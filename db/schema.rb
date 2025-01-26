@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_26_062605) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_26_102156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,11 +21,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_062605) do
     t.index ["name"], name: "index_affiliations_on_name", unique: true
   end
 
+  create_table "affiliations_people", id: false, force: :cascade do |t|
+    t.bigint "affiliation_id", null: false
+    t.bigint "person_id", null: false
+    t.index ["affiliation_id"], name: "index_affiliations_people_on_affiliation_id"
+    t.index ["person_id"], name: "index_affiliations_people_on_person_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_locations_on_name", unique: true
+  end
+
+  create_table "locations_people", id: false, force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.bigint "person_id", null: false
+    t.index ["location_id"], name: "index_locations_people_on_location_id"
+    t.index ["person_id"], name: "index_locations_people_on_person_id"
   end
 
   create_table "people", force: :cascade do |t|

@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Root path redirects to People#index
+  root to: "people#index"
+
+  # Resourceful routes for people
+  resources :people, only: [:index] do
+    collection do
+      post :csv_upload
+    end
+  end
 end
