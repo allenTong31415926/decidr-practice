@@ -223,40 +223,51 @@
   </div>
 
   <script>
-    function sortTable(columnIndex) {
-      const table = document.querySelector('table');
-      const tbody = table.querySelector('tbody');
-      const th = table.querySelectorAll('th')[columnIndex];
-      const rows = Array.from(tbody.querySelectorAll('tr'));
+    document.addEventListener('turbo:load', function() {
+      function sortTable(columnIndex) {
+        const table = document.querySelector('table');
+        if (!table) return;
+        
+        const tbody = table.querySelector('tbody');
+        if (!tbody) return;
+        
+        const th = table.querySelectorAll('th')[columnIndex];
+        if (!th) return;
+        
+        const rows = Array.from(tbody.querySelectorAll('tr'));
 
-      // Get current sort direction or default to ascending
-      const currentDir = th.getAttribute('data-sort-dir') || 'asc';
-      const newDir = currentDir === 'asc' ? 'desc' : 'asc';
+        // Get current sort direction or default to ascending
+        const currentDir = th.getAttribute('data-sort-dir') || 'asc';
+        const newDir = currentDir === 'asc' ? 'desc' : 'asc';
 
-      // Reset all sort indicators
-      table.querySelectorAll('th').forEach(header => {
-        header.removeAttribute('data-sort-dir');
-      });
+        // Reset all sort indicators
+        table.querySelectorAll('th').forEach(header => {
+          header.removeAttribute('data-sort-dir');
+        });
 
-      // Set new sort direction
-      th.setAttribute('data-sort-dir', newDir);
+        // Set new sort direction
+        th.setAttribute('data-sort-dir', newDir);
 
-      // Sort the rows
-      rows.sort((a, b) => {
-        const aValue = a.children[columnIndex].textContent.trim();
-        const bValue = b.children[columnIndex].textContent.trim();
+        // Sort the rows
+        rows.sort((a, b) => {
+          const aValue = a.children[columnIndex]?.textContent?.trim() || '';
+          const bValue = b.children[columnIndex]?.textContent?.trim() || '';
 
-        if (newDir === 'asc') {
-          return aValue.localeCompare(bValue);
-        } else {
-          return bValue.localeCompare(aValue);
-        }
-      });
+          if (newDir === 'asc') {
+            return aValue.localeCompare(bValue);
+          } else {
+            return bValue.localeCompare(aValue);
+          }
+        });
 
-      // Update the table
-      tbody.innerHTML = '';
-      rows.forEach(row => tbody.appendChild(row));
-    }
+        // Update the table
+        tbody.innerHTML = '';
+        rows.forEach(row => tbody.appendChild(row));
+      }
+
+      // Make sortTable function available globally
+      window.sortTable = sortTable;
+    });
   </script>
 </body>
 </html>
