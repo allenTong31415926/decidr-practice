@@ -1,3 +1,5 @@
+require 'rollbar'
+
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
@@ -17,6 +19,12 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_standard_error(exception)
+    Rollbar.error(exception,
+      controller: controller_name,
+      action: action_name,
+      params: request.filtered_parameters
+    )
+
     flash.now[:error] = exception.message
 
     respond_to do |format|
