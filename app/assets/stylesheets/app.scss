@@ -1,0 +1,78 @@
+// Custom Bootstrap variables can be added before importing Bootstrap
+@import "bootstrap";
+
+// Custom styles
+.table {
+  min-width: 1200px;
+}
+
+.table th {
+  background-color: #0d6efd;
+  color: white;
+  border-color: #0a58ca;
+}
+
+.sortable {
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px !important;
+}
+
+.sortable::after {
+  content: '▼';
+  position: absolute;
+  right: 5px;
+  opacity: 0.3;
+}
+
+.sortable[data-sort-dir="asc"]::after {
+  content: '▲';
+  opacity: 1;
+}
+
+.sortable[data-sort-dir="desc"]::after {
+  content: '▼';
+  opacity: 1;
+}
+
+.page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+.page-link:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+  color: white;
+}
+
+.page-item.disabled .page-link {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+.page-item.disabled .page-link:hover {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+.page-item .btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+.page-item .btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+  color: white;
+}
+
+.page-item.disabled .btn-primary {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+  color: #6c757d;
+} 
