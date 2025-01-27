@@ -12,6 +12,7 @@
   border-color: #0a58ca;
 }
 
+// Sortable table headers
 .sortable {
   cursor: pointer;
   position: relative;
@@ -35,44 +36,26 @@
   opacity: 1;
 }
 
-.page-link {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-  color: white;
-}
-
-.page-link:hover {
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
-  color: white;
-}
-
-.page-item.disabled .page-link {
+// Button and pagination styles
+.btn-primary:disabled,
+.pagination .page-item.disabled .btn-primary {
   background-color: #e9ecef;
   border-color: #dee2e6;
   color: #6c757d;
+  opacity: 1;
+  pointer-events: none;
 }
 
-.page-item.disabled .page-link:hover {
-  background-color: #e9ecef;
-  border-color: #dee2e6;
-  color: #6c757d;
-}
+.pagination {
+  .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+  }
 
-.page-item .btn-primary {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-  color: white;
-}
-
-.page-item .btn-primary:hover {
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
-  color: white;
-}
-
-.page-item.disabled .btn-primary {
-  background-color: #e9ecef;
-  border-color: #dee2e6;
-  color: #6c757d;
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    color: white;
+  }
 } 

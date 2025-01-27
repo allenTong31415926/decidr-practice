@@ -56,13 +56,17 @@
         <nav aria-label="Page navigation" class="mt-4">
           <ul class="pagination justify-content-center align-items-center">
             <li class="page-item <%= @page <= 1 ? 'disabled' : '' %>">
-              <%= link_to "Previous", people_path(page: @page - 1, search: params[:search]), class: "page-link", tabindex: (@page <= 1 ? '-1' : nil) %>
+              <%= link_to "Previous", people_path(page: @page - 1, search: params[:search]),
+                  class: "btn btn-primary #{'disabled' if @page <= 1}",
+                  tabindex: (@page <= 1 ? '-1' : nil) %>
             </li>
             <li class="mx-3">
               Page <%= @page %>
             </li>
             <li class="page-item <%= @people.size < 10 ? 'disabled' : '' %>">
-              <%= link_to "Next", people_path(page: @page + 1, search: params[:search]), class: "page-link", tabindex: (@people.size < 10 ? '-1' : nil) %>
+              <%= link_to "Next", people_path(page: @page + 1, search: params[:search]),
+                  class: "btn btn-primary #{'disabled' if @people.size < 10}",
+                  tabindex: (@people.size < 10 ? '-1' : nil) %>
             </li>
           </ul>
         </nav>
