@@ -2,6 +2,12 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
+class ActionDispatch::IntegrationTest
+  include Rails::Controller::Testing::TestProcess
+  include Rails::Controller::Testing::TemplateAssertions
+  include Rails::Controller::Testing::Integration
+end
+
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
