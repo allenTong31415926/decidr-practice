@@ -12,12 +12,8 @@
         <h1 class="text-center mb-5">People Data</h1>
 
         <!-- CSV Upload Form -->
-        <div class="d-flex justify-content-center mb-4">
-          <%= form_tag csv_upload_people_path, multipart: true, class: "d-flex align-items-center gap-3" do %>
-            <%= file_field_tag :file, class: "form-control", style: "width: 300px;" %>
-            <%= submit_tag "Upload CSV", class: "btn btn-primary" %>
-          <% end %>
-        </div>
+        <%= render 'csv_upload_form' %>
+        <%= render 'shared/flash_messages' %>
 
         <!-- People Table -->
         <div class="table-responsive">
@@ -117,6 +113,17 @@
           tbody.innerHTML = '';
           rows.forEach(row => tbody.appendChild(row));
         }
+
+        window.toggleUploadButton = function() {
+          const fileInput = document.querySelector('input[type="file"]');
+          const uploadButton = document.getElementById('upload_button');
+          if (uploadButton) {
+            uploadButton.disabled = !fileInput.files.length;
+          }
+        }
+
+        // Call once on page load to set initial state
+        toggleUploadButton();
       });
     </script>
   <% end %>

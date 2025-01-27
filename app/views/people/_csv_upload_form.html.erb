@@ -1,0 +1,6 @@
+<div id="csv_upload_form" class="d-flex flex-column align-items-center mb-4">
+  <%= form_tag csv_upload_people_path, multipart: true, class: "d-flex align-items-center gap-3", data: { turbo: true } do %>
+    <%= file_field_tag :file, class: "form-control", style: "width: 300px;", onchange: "toggleUploadButton()" %>
+    <%= submit_tag "Upload CSV", class: "btn btn-primary", id: "upload_button", disabled: true %>
+  <% end %>
+</div> 
