@@ -32,17 +32,8 @@ class PeopleController < ApplicationController
 
   # POST /people/csv_upload
   def csv_upload
-    file = params[:file]
-    if file.present?
-      begin
-        CsvImporter.import(file.path)
-        flash[:notice] = "CSV imported successfully."
-      rescue => e
-        flash[:alert] = "Error during CSV import: #{e.message}"
-      end
-    else
-      flash[:alert] = "No file was provided."
-    end
+    CsvImporter.import(params[:file].path)
+    flash[:notice] = "CSV Success - All records imported"
 
     redirect_to people_path
   end
