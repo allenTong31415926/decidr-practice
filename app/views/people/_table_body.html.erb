@@ -1,0 +1,13 @@
+<tbody>
+  <% people.each do |person| %>
+    <tr>
+      <td><%= person.first_name %></td>
+      <td><%= person.last_name %></td>
+      <td><%= person.gender %></td>
+      <td><%= person.weapon %></td>
+      <td><%= person.vehicle %></td>
+      <td><%= person.locations.map(&:name).join(", ") %></td>
+      <td><%= person.affiliations.map(&:name).join(", ") %></td>
+    </tr>
+  <% end %>
+</tbody> 

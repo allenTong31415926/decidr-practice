@@ -1,0 +1,19 @@
+{
+  "name": "decidr-practice",
+  "private": true,
+  "dependencies": {
+    "@hotwired/turbo-rails": "^8.0.0",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "typescript": "^5.3.3",
+    "esbuild": "^0.20.0"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/node": "^20.0.0"
+  },
+  "scripts": {
+    "build": "tsc && esbuild app/javascript/*.ts --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
+    "watch": "tsc --watch & esbuild app/javascript/*.ts --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets --watch"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "es2020",
+    "moduleResolution": "node",
+    "strict": true,
+    "sourceMap": true,
+    "outDir": "app/assets/builds",
+    "esModuleInterop": true,
+    "lib": ["es2020", "dom"],
+    "noImplicitAny": true
+  },
+  "include": ["app/javascript/**/*"],
+  "exclude": ["node_modules"]
+}

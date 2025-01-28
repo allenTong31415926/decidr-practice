@@ -1,0 +1,4 @@
+<%= form_tag people_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :search, params[:search], class: "form-control me-2", style: "width: 300px;", placeholder: "Search all fields..." %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %> 
