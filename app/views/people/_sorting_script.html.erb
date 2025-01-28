@@ -35,15 +35,5 @@
       tbody.innerHTML = '';
       rows.forEach(row => tbody.appendChild(row));
     }
-
-    window.toggleUploadButton = function() {
-      const fileInput = document.querySelector('input[type="file"]');
-      const uploadButton = document.getElementById('upload_button');
-      if (uploadButton) {
-        uploadButton.disabled = !fileInput.files.length;
-      }
-    }
-
-    toggleUploadButton();
   });
 </script> 
