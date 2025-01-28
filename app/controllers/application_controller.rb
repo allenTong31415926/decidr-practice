@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Handles CSV-specific errors with appropriate response
+  # @param exception [CsvError::MissingRequiredField] the caught exception
+  # @return [void]
   def handle_csv_error(exception)
     flash.now[:error] = exception.message
 
@@ -18,6 +21,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Handles general errors with logging and appropriate response
+  # @param exception [StandardError] the caught exception
+  # @return [void]
   def handle_standard_error(exception)
     Rollbar.error(exception,
       controller: controller_name,
