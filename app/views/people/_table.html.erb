@@ -1,0 +1,10 @@
+<div class="table-responsive">
+  <div class="d-flex justify-content-end mb-3">
+    <%= render 'search_form' %>
+  </div>
+
+  <table class="table table-striped table-hover border">
+    <%= render 'table_header' %>
+    <%= render 'table_body', people: people %>
+  </table>
+</div>
