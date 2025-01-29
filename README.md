@@ -10,7 +10,6 @@ A Ruby on Rails application for managing and searching character data with CSV i
 - Real-time search across multiple fields
 - Pagination (10 items per page)
 - Error tracking with Rollbar
-- Docker support for easy deployment
 
 ## Technology Stack
 
@@ -19,7 +18,6 @@ A Ruby on Rails application for managing and searching character data with CSV i
 - PostgreSQL
 - TypeScript
 - Bootstrap 5.3
-- Docker
 
 ## Development Setup
 
@@ -42,23 +40,6 @@ bin/rails db:create db:migrate
 ```
 
 Visit `http://localhost:3000`
-
-## Docker Setup
-
-1. Build the image:
-```bash
-docker build -t decidr_practice .
-```
-
-2. Run the container:
-```bash
-docker run -d \
-  -p 3000:3000 \
-  -e DATABASE_URL="postgresql://user:password@host:5432/dbname" \
-  -e RAILS_MASTER_KEY=$(cat config/master.key) \
-  --name decidr_practice \
-  decidr_practice
-```
 
 ## Testing
 
