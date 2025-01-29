@@ -4,6 +4,9 @@ A Ruby on Rails application for managing and searching character data with CSV i
 
 ## Application Preview
 
+### People Data View
+![People Data View](docs/images/people-data-view.png)
+
 ## Features
 
 - CSV data import with validation
